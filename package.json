@@ -1,0 +1,23 @@
+{
+  "name": "starry-math",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/starry-math.umd.js",
+  "module": "dist/starry-math.js",
+  "exports": {
+    ".": {
+      "import": "./dist/starry-math.js",
+      "require": "./dist/starry-math.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
+  }
+}
