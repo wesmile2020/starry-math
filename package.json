@@ -1,23 +1,54 @@
 {
   "name": "starry-math",
   "version": "1.0.0",
+  "description": "a math library for webgl/webgpu",
+  "keywords": [
+    "math",
+    "matrix",
+    "vector",
+    "webgl",
+    "webgpu"
+  ],
+  "homepage": "https://github.com/wesmile2020/starry-math",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesmile2020/starry-math.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wesmile2020/starry-math/issues"
+  },
+  "license": "MIT",
+  "author": "lei.li",
   "type": "module",
-  "main": "dist/starry-math.umd.js",
-  "module": "dist/starry-math.js",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/starry-math.js",
+  "types": "./dist/typings/starry-math.d.ts",
   "exports": {
     ".": {
       "import": "./dist/starry-math.js",
-      "require": "./dist/starry-math.umd.js"
+      "require": "./dist/starry-math.umd.cjs",
+      "types": "./dist/typings/starry-math.d.ts"
     }
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "vite build && npm run typings",
+    "typings": "extract-typings -e ./src/index.ts -o ./dist/typings -f starry-math -c"
   },
   "devDependencies": {
-    "@types/node": "^24.1.0",
-    "typescript": "~5.8.3",
-    "vite": "^7.0.4"
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "@vitest/coverage-v8": "^4.0.15",
+    "eslint": "^9.39.1",
+    "extract-typings": "^1.0.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.1",
+    "vite": "npm:rolldown-vite@7.2.5",
+    "vite-plugin-checker": "^0.11.0",
+    "vitest": "^4.0.15"
+  },
+  "overrides": {
+    "vite": "npm:rolldown-vite@7.2.5"
   }
 }
