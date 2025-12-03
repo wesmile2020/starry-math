@@ -34,7 +34,8 @@
   },
   "scripts": {
     "build": "vite build && npm run typings",
-    "typings": "extract-typings -e ./src/index.ts -o ./dist/typings -f starry-math -c"
+    "typings": "extract-typings -e ./src/index.ts -o ./dist/typings -f starry-math -c",
+    "test": "vitest"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -50,5 +51,8 @@
   },
   "overrides": {
     "vite": "npm:rolldown-vite@7.2.5"
+  },
+  "dependencies": {
+    "@mapbox/unitbezier": "^0.0.1"
   }
 }

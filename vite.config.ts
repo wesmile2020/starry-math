@@ -1,12 +1,3 @@
-import { type ViteUserConfig } from 'vitest/config';
-declare module "vite" {
-	interface UserConfig {
-    /**
-		* Options for Vitest
-		*/
-		test?: ViteUserConfig['test'];
-  }
-}
 import { defineConfig } from 'vite';
 import path from 'path';
 import checker from 'vite-plugin-checker';
@@ -23,12 +14,6 @@ export default defineConfig({
     alias: {
       '~': path.resolve(__dirname, './'),
       '@': path.resolve(__dirname, './src'),
-    },
-  },
-  test: {
-    coverage: {
-      enabled: true,
-      provider: 'v8',
     },
   },
   plugins: [
