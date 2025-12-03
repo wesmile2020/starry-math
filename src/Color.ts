@@ -1,3 +1,7 @@
+import { colors, type ColorName } from './ColorName'
+
+export type ColorString = ColorName | 'transparent' | ({} & string);
+
 /**
  * Color Class for color manipulation and conversion
  * @public
@@ -27,7 +31,7 @@ class Color {
    *                - Number format: Supports hexadecimal color value (e.g., `0xFF0000` for red)
    *                - No parameter: Defaults to opaque black (r=0, g=0, b=0, a=1)
    */
-  constructor(color?: string | number) {
+  constructor(color?: ColorString | number) {
     if (typeof color === 'string') {
       this.setStyle(color);
     }
@@ -81,21 +85,27 @@ class Color {
     const g = (this.g * 255 + 0x100).toString(16).slice(1);
     const b = (this.b * 255 + 0x100).toString(16).slice(1);
 
-    return `${r}${g}${b}`;
+    return `${r.toUpperCase()}${g.toUpperCase()}${b.toUpperCase()}`;
   }
 
   /**
    * Sets color from a CSS color string
-   * @param color - CSS color string in formats like 'rgba()', '#RRGGBB', '#RGB', or 'transparent'
+   * @param color - CSS color string in formats like 'red' 'yellow' and so on,
+   * 'rgb()', 'rgba()', '#RRGGBB', '#RGB', or 'transparent'
    * @returns Current Color instance for chaining
    */
-  setStyle(color: string): this {
-    const rgbaMatch = /^rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+\.?\d*?)\s*)?\)\s*$/.exec(color);
-    if (rgbaMatch) {
-      this.r = Number(rgbaMatch[1]) / 255 || 0;
-      this.g = Number(rgbaMatch[2]) / 255 || 0;
-      this.b = Number(rgbaMatch[3]) / 255 || 0;
-      this.a = rgbaMatch[4] ? Number(rgbaMatch[4]) : 1;
+  setStyle(color: ColorString): this {
+    const colorValue = colors[color as ColorName];
+    if (colorValue) {
+      this.r = colorValue[0] / 255;
+      this.g = colorValue[1] / 255;
+      this.b = colorValue[2] / 255;
+      this.a = 1;
+    } else if (color === 'transparent') {
+      this.r = 0;
+      this.g = 0;
+      this.b = 0;
+      this.a = 0;
     } else if (color[0] === '#') {
       let value = color.slice(1);
       if (value.length === 3) {
@@ -105,12 +115,16 @@ class Color {
         const hex = parseInt(value, 16);
         this.setHex(hex);
       }
-    } else if (color === 'transparent') {
-      this.r = 0;
-      this.g = 0;
-      this.a = 0;
-      this.a = 0;
+    } else {
+      const rgbaMatch = /^rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+\.?\d*?)\s*)?\)\s*$/.exec(color);
+      if (rgbaMatch) {
+        this.r = Number(rgbaMatch[1]) / 255 || 0;
+        this.g = Number(rgbaMatch[2]) / 255 || 0;
+        this.b = Number(rgbaMatch[3]) / 255 || 0;
+        this.a = rgbaMatch[4] ? Number(rgbaMatch[4]) : 1;
+      }
     }
+
     return this;
   }
 
