@@ -1,34 +1,17 @@
+import { type Matrix4Tuple, type IMatrix4, type PlaneEquation } from './IMatrix4';
 import { Vector3 } from './Vector3';
-import { Euler } from './Euler';
+import { type Euler } from './Euler';
 import { Quaternion } from './Quaternion';
-import { type Coordinate3D, type Tuple } from './interfaces';
-import { Vector4 } from './Vector4';
-
-/**
- * Type definition for a 4x4 matrix represented as a 16-element array in column-major order.
- */
-export type Matrix4Tuple = Tuple<number, 16>;
-
-/**
- * Interface representing a plane equation in the form ax + by + cz + d = 0.
- */
-export interface PlaneEquation {
-  /** The a coefficient of the plane equation. */
-  a: number;
-  /** The b coefficient of the plane equation. */
-  b: number;
-  /** The c coefficient of the plane equation. */
-  c: number;
-  /** The d coefficient of the plane equation. */
-  d: number;
-}
+import { type Coordinate3D } from './interfaces';
+import { type Vector4 } from './Vector4';
 
 /**
  * Represents a 4x4 transformation matrix used for 3D transformations.
  * This class provides methods for matrix composition, decomposition, multiplication,
  * inversion, and various transformation operations like translation, rotation, and scaling.
+ * @public
  */
-class Matrix4 {
+class Matrix4 implements IMatrix4 {
   /**
    * Static quaternion instance used for internal calculations to avoid redundant object creation.
    */

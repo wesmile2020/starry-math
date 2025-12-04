@@ -1,4 +1,4 @@
-import { Matrix4 } from './Matrix4';
+import { type IMatrix4 } from './IMatrix4';
 import { type Coordinate3D } from './interfaces';
 
 /**
@@ -118,7 +118,7 @@ class Vector3 {
    * @param matrix - The 4x4 matrix to apply
    * @returns Returns this vector for method chaining
    */
-  transformDirection(matrix: Matrix4): this {
+  transformDirection(matrix: IMatrix4): this {
     const { x, y, z } = this;
     const e = matrix.toArray();
     this.x = e[0] * x + e[4] * y + e[8] * z;
@@ -132,7 +132,7 @@ class Vector3 {
    * @param matrix - The 4x4 matrix to apply
    * @returns Returns this vector for method chaining
    */
-  applyMatrix4(matrix: Matrix4): this {
+  applyMatrix4(matrix: IMatrix4): this {
     const e = matrix.toArray();
     const x = this.x, y = this.y, z = this.z;
     const w = 1 / (e[3] * x + e[7] * y + e[11] * z + e[15]);
@@ -209,7 +209,7 @@ class Vector3 {
    */
   divide(vector: Vector3): this {
     this.x /= vector.x;
-    this.y /= vector.x;
+    this.y /= vector.y;
     this.z /= vector.z;
     return this;
   }

@@ -2,7 +2,6 @@ import UnitBezier from '@mapbox/unitbezier';
 import { Vector2 } from './Vector2';
 import { type ArrayPointOptional } from './interfaces';
 
-
 /**
  * Restricts a number to be within a specified range
  * @param num The number to clamp
@@ -82,8 +81,12 @@ export function generateUUID(): string {
  * @returns The interpolated value between 0 and 1
  */
 export function smoothstep(x: number, min: number, max: number): number {
-  if (x <= min) return 0;
-  if (x >= max) return 1;
+  if (x <= min) {
+    return 0;
+  }
+  if (x >= max) {
+    return 1;
+  }
   const num = (x - min) / (max - min);
 
   return num * num * (3 - 2 * num);

@@ -1,5 +1,5 @@
-import { Box3 } from './Box3';
-import { Matrix4 } from './Matrix4';
+import { type Box3 } from './Box3';
+import { type IMatrix4 } from './IMatrix4';
 import { Vector3 } from './Vector3';
 
 /**
@@ -359,7 +359,7 @@ class Ray {
    * @param {Matrix4} matrix4 - The transformation matrix to apply.
    * @returns {this} This ray instance for method chaining.
    */
-  applyMatrix4(matrix4: Matrix4): this {
+  applyMatrix4(matrix4: IMatrix4): this {
     this.origin.applyMatrix4(matrix4);
     this.direction.transformDirection(matrix4);
     return this;

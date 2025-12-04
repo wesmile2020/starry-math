@@ -5,6 +5,7 @@ export * from './Color';
 export * from './Euler';
 export * from './interfaces';
 export * as MathUtils from './MathUtils';
+export * from './IMatrix4';
 export * from './Matrix4';
 export * from './Quaternion';
 export * from './Ray';
