@@ -1,6 +1,7 @@
 import { test, expect } from 'vitest';
 
-import { Matrix4, type Matrix4Tuple } from '@/Matrix4';
+import { type Matrix4Tuple} from '@/IMatrix4';
+import { Matrix4 } from '@/Matrix4';
 import { Vector3 } from '@/Vector3';
 import { Euler } from '@/Euler';
 import { Vector4 } from '@/Vector4';
