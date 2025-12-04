@@ -1,0 +1,36 @@
+name: Auto Deploy to GitHub Pages 🚀
+
+on:
+  push:
+    branches: [ "doc" ] # 当向main分支推送代码时触发此工作流
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 将仓库代码拉取到虚拟机环境
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 2. 设置Node.js环境（以Node项目为例）
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      # 3. 安装依赖并构建
+      - name: Install and Build
+        run: |
+          npm install
+          npm run doc
+
+      # 4. 部署到GitHub Pages分支
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: pages # 部署到的目标分支
+          folder: docs # 你项目构建后生成的静态文件目录
