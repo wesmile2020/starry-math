@@ -14,18 +14,18 @@ jobs:
     steps:
       # 1. 将仓库代码拉取到虚拟机环境
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       # 2. 设置Node.js环境（以Node项目为例）
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
 
       # 3. 安装依赖并构建
       - name: Install and Build
         run: |
-          npm install
+          npm ci
           npm run doc
 
       # 4. 部署到GitHub Pages分支
