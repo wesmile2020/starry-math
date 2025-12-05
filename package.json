@@ -35,7 +35,8 @@
   "scripts": {
     "build": "vite build && npm run typings",
     "typings": "extract-typings -e ./src/index.ts -o ./dist/typings -f starry-math -c",
-    "test": "vitest"
+    "test": "vitest",
+    "doc": "typedoc"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -43,6 +44,8 @@
     "@vitest/coverage-v8": "^4.0.15",
     "eslint": "^9.39.1",
     "extract-typings": "^1.0.0",
+    "typedoc": "^0.28.15",
+    "typedoc-plugin-missing-exports": "^4.1.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.1",
     "vite": "npm:rolldown-vite@7.2.5",
