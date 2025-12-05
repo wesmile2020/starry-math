@@ -23,7 +23,7 @@ jobs:
       # 3. 安装依赖并构建
       - name: Install and Build
         run: |
-          npm ci
+          npm install
           npm run build
 
       # 4. 发布到NPM
