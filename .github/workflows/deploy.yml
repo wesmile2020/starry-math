@@ -1,8 +1,8 @@
-name: Auto Deploy to GitHub Pages 🚀
+name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [ "master" ] # 当向master分支推送代码时触发此工作流
+  release:
+    types: [published]
 
 permissions:
   contents: write
@@ -14,13 +14,13 @@ jobs:
     steps:
       # 1. 将仓库代码拉取到虚拟机环境
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
-      # 2. 设置Node.js环境（以Node项目为例）
+      # 2. 设置Node.js环境
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: 22
 
       # 3. 安装依赖并构建
       - name: Install and Build
